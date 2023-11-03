@@ -1,9 +1,10 @@
 import path from 'path';
 import { Configuration } from 'webpack';
 import 'webpack-dev-server';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const config: Configuration = {
-  entry: './src/App.tsx',
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -27,7 +28,13 @@ const config: Configuration = {
     port: 3000, // your desired port here
     open: false, // open browser when server starts
     hot: true, // enable hot module replacement
+    historyApiFallback: true,
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html' // Path to your template file
+    })
+  ]
 };
 
 export default config;
